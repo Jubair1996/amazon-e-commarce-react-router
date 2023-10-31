@@ -1,10 +1,14 @@
-import { Link, useLoaderData } from "react-router-dom";
+import {  useLoaderData, useNavigate } from "react-router-dom";
 
 const SingleProduct = () => {
   const product = useLoaderData();
   console.log(product);
   const {title, price, thumbnail, description, category,brand,discountPercentage
   } = product || {};
+  const navigate = useNavigate()
+  const handleNavigate = () =>{
+    navigate("/")
+  }
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="   bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -80,11 +84,10 @@ const SingleProduct = () => {
               ${price}
             </span>
 
-            <Link to='/products'>
-            <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button onClick={handleNavigate} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Add To Cart
             </button>
-            </Link>
+            
           </div>
         </div>
       </div>
