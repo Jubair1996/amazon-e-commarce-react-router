@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
-const Product = ({ product }) => {
-  const { id, title, price, thumbnail } = product || {};
+const SingleProduct = () => {
+  const product = useLoaderData();
+  console.log(product);
+  const {title, price, thumbnail, description, category,brand,discountPercentage
+  } = product || {};
   return (
-    <div>
-      <div className="w-full h-96   bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex justify-center items-center h-screen">
+      <div className="   bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img
             className="p-8 rounded-t-lg w-full h-64"
@@ -18,6 +21,10 @@ const Product = ({ product }) => {
               {title}
             </h5>
           </a>
+          <p>{discountPercentage}</p>
+          <p>{category}</p>
+          <p>{brand}</p>
+          <p>{description}</p>
           <div className="flex items-center mt-2.5 mb-5">
             <svg
               className="w-4 h-4 text-yellow-300 mr-1"
@@ -72,9 +79,10 @@ const Product = ({ product }) => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               ${price}
             </span>
-            <Link to={`/product/${id}`}>
+
+            <Link to='/products'>
             <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Vews Details
+              Add To Cart
             </button>
             </Link>
           </div>
@@ -84,4 +92,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default SingleProduct;
